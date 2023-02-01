@@ -1,0 +1,31 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ubah Barang</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+</head>
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            {% for message in messages %}
+                {% if message %}
+                    <div class="alert alert-success">{{ message }}</div>
+                {% endif %}
+            {% endfor %}
+            <h3>UBAH : {{ Barangs.kode }}</h3>
+            <form action="{% url 'ubah_brg' Barangs.id %}" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">simpan</button>
+                <a href="/brgview" class="btn btn-danger">Kembali</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
